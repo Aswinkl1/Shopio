@@ -1,0 +1,89 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+{% block title %} signup {% endblock %}
+
+{% block content %}
+
+{% load allauth %}
+
+
+<style>
+    input,input:focus{
+            background-color:#EEEEEE;
+            border-radius: 3px;
+            border: 0.5px solid #b4b4b4;
+            /* border: 0; */
+            outline: none;
+        }
+        input::placeholder{
+            font-size: 15px;
+            color: #B1B1B1;
+            font-weight: 400;
+        }
+</style>
+
+
+<div style="min-height: 94vh;" class="d-flex align-items-center justify-content-center">
+    
+    <div class=" " style="width: 450px;">
+        <div class=" p-5">
+           <div class="text-center">
+                <img src="{% static 'header/logo.png' %}" alt="" class="w-50 mb-4">
+           </div>
+           <div>
+            <p>
+                
+                You are about to use your {{provider_name}} account to login to{{site_name}}. As a final step, please complete the following form:
+                
+    </p>
+            </p>
+           </div>
+           <form action="{% url 'socialaccount_signup'%}" method="post">
+            {%csrf_token%}
+           <div>
+                <label for="{{form.username.id_for_username}}" style="font-size: 17px;font-weight: 600;" class="d-block mb-0">Enter Username</label>
+                <input type="text" name="{{form.username.name}}" id="{{form.username.id_for_username}}" value="" class="w-100 pb-3 mb-2" style="" placeholder="Enter your username...">
+                <p>{{form.username.errors}}</p>
+           </div>
+
+           <div>
+                <label for="{{form.email.id_for_email}}" style="font-size: 17px;font-weight: 600;" class="d-block mb-0">Enter Email</label>
+                
+                <input type="text" name="{{form.email.name}}" id="{{form.email.id_for_username}}" value="{{form.email.value}}" class="w-100 pb-3 mb-2" style="" placeholder="Enter your email...">
+                <p>{{form.email.errors}}</p>
+            </div>
+
+           
+
+
+           
+
+           {% if form.errors or form.non_field_errors %}
+                    <div class="">
+                        {% for field in form%}
+                            <!-- <p>{{field.errors}}</p> -->
+                        {% endfor %}
+                        {{form.non_field_errors}}
+                    </div>
+
+                {% endif %}
+           <div>
+                <button type="submit" class="w-100 mt-4 py-1" style="
+                    color: white;
+                    background-color: #7F30BD;
+                    border-radius: 2px;
+                    border-style: none;
+                    font-size: 18px;">Signup</button>
+           </div>
+        </form>
+           
+           
+           
+        
+    </div>
+    </div>
+</div>
+    
+
+{% endblock %}

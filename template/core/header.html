@@ -1,4 +1,4 @@
-{% extends 'core/base.html' %}
+<!-- 
 
 
 <div style="z-index: 1;">
@@ -11,7 +11,7 @@
         </button>
         <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavAltMarkup">
           <div class="navbar-nav font-weight-bold ">
-            <!-- <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a> -->
+
             <a class="nav-item nav-link" href="{% url 'Item:new'%}">New Item</a>
             <a class="nav-item nav-link" href="#">Browse</a>
             {%if request.user.is_authenticated %}
@@ -31,5 +31,83 @@
           </div>
         </div>
       </nav>
-  </div>
+  </div> -->
+{% load static %}
+  <header>
+    <div class="container-fluid px-4 py-2">
+        <div class="root">
+            <div class="d-flex  justify-content-between" >
+                <div class="mr-5">
+                    <div class="my-auto mx-auto ">
+                      <a href="/">
+                        <img src="{% static 'header/logo.png' %}" alt="" class="w-100 mt-2">
+                      </a>
+                    </div>
+                </div>
+                <div class=" mt-2 w-100 ml-5">
+                  <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control  rounded-left w-50 " style="
+                      /* height: px;  */
+                      border-color: rgba(127, 48, 189, 0.6); 
+                      margin-right: -1px;
+                      border-radius: 0;
+                      " type="search"  aria-label="Search" >
+                    <button class="btn  ml-0 my-sm-0 rounded-right px-4 " type="submit" 
+                    style="
+                      border-radius: 0; 
+                      border-color: rgba(127, 48, 189, 0.6);
+                      height: 38px;
+                      background-color: rgba(127, 48, 189, 0.4);
+                      
+                    ">
+                      <img src="{% static 'header/search.png' %}" alt="" style="width: 19px;" class="text-center">
+                  </button>
+                  </form>
+                </div>
 
+                <div class="d-flex mt-2  justify-content-between w-50">
+                  <div class="d-inline">
+                    <button style="
+                      border-color: rgba(127, 48, 189, 1);
+                       font-size: 17px;
+                        border-style: solid;
+                        background-color: white;" 
+                        
+                        class=" px-4 py-1 font-weight-bold">+ Create New</button>
+                  </div>
+                  {%if request.user.is_authenticated %}
+                  <div class="d-inline">
+                    <a href=""><img src="{% static 'header/mark_email_unread.png' %}" alt="" class="w-75"></a>
+                  </div>
+
+                  <div class="d-inline mr-4" style="width: 40px;">
+                    <a href="">
+                    <img src="{% static 'header/Shafila.png' %}" alt="" class="rounded-circle w-100">
+                  </a>
+                  </div>
+                  <div class="d-inline">
+                    <form action="{% url 'account_logout' %}" method="post">
+                      {%csrf_token%}
+                      <button class="btn btn-success" type="submit">logout</button>
+                  </form>
+                  </div>
+
+                  {% else%}
+                  <div class="d-inline">
+                    
+                    <a href="{% url 'account_signup' %}"><img src="" alt="" class="w-75 btn btn-success" >signup</a>
+                  </div>
+
+                  <div class="d-inline mr-4" style="width: 40px;">
+                    <a href="{% url 'account_login' %}" class="btn btn-success">
+                    <!-- <img src="{% static 'header/Shafila.png' %}" alt="" class="rounded-circle w-100"> -->
+                    login
+                  </a>
+                  </div>
+                  {% endif%}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</header>

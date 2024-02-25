@@ -29,12 +29,14 @@ def search_items(request):
 
 def details(request,pk):
     print("jo")
+    categories = category.objects.all()
     item_instance = get_object_or_404(item,pk=pk)
     related_items = item.objects.filter(category = item_instance.category ,is_sold = False).exclude(pk = pk)[0:4]
 
     return render(request,'details.html',{
         'item_instance':item_instance,
         'related_items':related_items,
+        'categories':categories,
         })
 @login_required
 def new_item(request):
@@ -56,6 +58,7 @@ def new_item(request):
 def item_delete(request,pk):
     item.objects.get(pk=pk).delete()
     return redirect('/')
+
 
 @login_required
 def item_edit(request,pk):

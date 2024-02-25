@@ -2,6 +2,7 @@ from django import forms
 from . models import item
 
 
+
 CLASS_FORMS = ' w-100 border form-control-lg'
 
 class NewItemForm(forms.ModelForm):

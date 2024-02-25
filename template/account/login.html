@@ -1,0 +1,116 @@
+{% extends 'core/base.html' %}
+
+{% block title %} signup {% endblock %}
+{% load static %}
+{% load socialaccount %}
+{% block content %}
+
+
+<!-- <div class="container my-auto w-50 " >
+    <div class="root">
+        <p class="text-center h2 mt-5">Signup </p>
+        <div style="  background-color: rgb(249, 234, 234);" class="my-4 mx-auto px-5 py-5 rounded shadow  ">
+            <form action="" method="post" class="">
+                {% csrf_token %} 
+                <div class="mb-3">
+                    <label for="">Username :</label>
+                    {{form.username}}
+                </div>
+                
+                
+                <div class="mb-3">
+                    <label for="">Password</label>
+                    {{form.password}}
+                </div>
+                
+                <div class="mx-5 class="mb-3"">
+                    <button type="submit" class="btn-primary mx-2 ">Submit</button>
+                </div>
+
+                {% if form.errors or form.non_field_errors %}
+                    <div class="">
+                        {% for field in form%}
+                            <p>{{field.errors}}</p>
+                        {% endfor %}
+                        {{form.non_field_errors}}
+                    </div>
+
+                {% endif %}
+        </form>
+        </div>
+    </div>
+</div> -->
+<style>
+    input,input:focus{
+            background-color:#EEEEEE;
+            border-radius: 3px;
+            border: 0.5px solid #b4b4b4;
+            /* border: 0; */
+            outline: none;
+        }
+        input::placeholder{
+            font-size: 15px;
+            color: #B1B1B1;
+            font-weight: 400;
+        }
+</style>
+
+
+<div style="min-height: 94vh;" class="d-flex align-items-center justify-content-center">
+    
+    <div class=" " style="width: 450px;">
+        <div class=" p-5">
+           <div class="text-center">
+                <img src="{% static 'header/logo.png' %}" alt="" class="w-50 mb-4">
+           </div>
+           <form action="{% url 'account_login' %}" method="post">
+            {% csrf_token %}
+           <div>
+                <label for="{{form.login.id_for_username}}" style="font-size: 16px;font-weight: 600;" class="d-block mb-0">Enter Email</label>
+                <input type="text" name="{{form.login.name}}" id="{{form.login.id_for_username}}" class="w-100 mb-2 pb-2" style="" placeholder="Enter your Email...">
+                <p>{{form.username.errors}}</p>
+           </div>
+
+           <div>
+                <label for="{{form.username.id_for_password}}" style="font-size: 16px;font-weight: 600;" class="d-block mb-0">Enter Password</label>
+                <input type="password" name="{{form.password.name}}" id="{{form.username.id_for_password}}" class="w-100 pb-2 " style="" placeholder="Enter your password...">
+                <p>{{form.password.errors}}</p>
+            </div>
+
+           <div>
+                <button type="submit" class="w-100 mt-4 py-1" style="
+                    color: white;
+                    background-color: #7F30BD;
+                    border-radius: 2px;
+                    border-style: none;
+                    font-size: 18px;">Login</button>
+           </div>
+
+        </form>
+           <div class="d-flex  align-items-center mt-5">
+                <hr color="#7F30BD"  width="100%" class="text-left mr-1 " >
+                <div class=" w-50" style="font-size: 15px;" >Login With</div>
+                <hr color="#7F30BD" size="2px" width="100%" class="text-left ml-1  " >
+            </div>
+          
+            <div class="text-center">
+              <form action="{% provider_login_url 'google' %}" class="d-inline" method="post">
+                {%csrf_token%}
+                 <button class="border-0" style="background-color: white;" type="submit"><img src="{% static 'logo/google.jpg' %}" alt="" class=" mr-2" style="width: 17px;"></button>
+                <!-- <img src="google.jpg" alt="" class=" mr-2" style="width: 13px;"> -->
+              </form>
+              <!-- <img src="google.jpg" alt="" class=" mr-2" style="width: 13px;"> -->
+              <!-- <img src="google.jpg" alt="" class=" mr-2 " style="width: 13px;"> -->
+            </div>
+           
+           
+        
+    </div>
+    </div>
+</div>
+    
+
+
+
+
+{% endblock %}

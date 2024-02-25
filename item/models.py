@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 class category(models.Model):
     name = models.CharField(max_length = 250)
 
+
     class Meta:
         verbose_name_plural = 'categories'
 
@@ -27,24 +28,3 @@ class item(models.Model):
     
     def __str__(self):
         return self.name
-
-
-
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-
-    
-
-
